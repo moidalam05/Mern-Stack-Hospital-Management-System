@@ -1,6 +1,6 @@
-import asyncHandler from '../utils/AsyncHandler';
-import CustomError from '../utils/CustomError';
-import Message from '../models/Message';
+import asyncHandler from '../utils/asyncHandler.js';
+import CustomError from '../utils/CustomError.js';
+import Message from '../models/message.models.js';
 
 // @desc    Create a new message
 // @route   POST /api/messages
