@@ -8,11 +8,7 @@ import Message from '../models/message.models.js';
 
 export const sendMessage = asyncHandler(async (req, res) => {
 	const { firstName, lastName, email, phone, message } = req.body;
-
-	if (!firstName || !lastName || !email || !phone || !message) {
-		throw new CustomError('Please fill in all fields', 400);
-	}
-
+	// Create a new message
 	const newMessage = await Message.create({
 		firstName,
 		lastName,
