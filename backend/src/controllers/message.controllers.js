@@ -1,5 +1,5 @@
 import asyncHandler from '../utils/asyncHandler.js';
-import CustomError from '../utils/CustomError.js';
+import CustomError from '../utils/customError.js';
 import Message from '../models/message.models.js';
 
 // @desc    Create a new message
