@@ -120,3 +120,37 @@ export const login = asyncHandler(async (req, res) => {
 		token,
 	});
 });
+
+/*******************************************************
+ * @SIGNOUT
+ * @route http://localhost:5000/api/v1/auth/signout
+ * @description Signout the user
+ * @returns {Object} - message
+ *******************************************************/
+
+export const logout = asyncHandler(async (req, res) => {
+	// clear the cookie
+	res.cookie('token', null, {
+		expires: new Date(Date.now()),
+		httpOnly: true,
+	});
+
+	res
+		.status(200)
+		.json({ success: true, message: 'User logged out successfully' });
+});
+
+/*******************************************************
+ * @GET_PROFILE
+ * @route http://localhost:5000/api/v1/auth/getProfile
+ * @description getProfile of the user
+ * @returns {Object} - user
+ *******************************************************/
+
+export const getProfile = asyncHandler(async (req, res) => { 
+	const { user } = req;
+	if (!user) {
+		throw new CustomError('User not found', 404);
+	}
+	res.status(200).json({ success: true, user });
+});

@@ -19,7 +19,7 @@ export const isLoggedIn = asyncHandler(async (req, res, next) => {
 	}
 
 	try {
-		jwt.verify(token, config.JWT_SECRET, async (err, decoded) => {
+		jwt.verify(token, config.JWT_SECRET_KEY, async (err, decoded) => {
 			if (err) {
 				throw new CustomError('Not authorized to access this route', 401);
 			}
