@@ -6,8 +6,9 @@ import Message from '../models/message.models.js';
 // @route   POST /api/messages
 // @access  Public
 
-export const sendMessage = asyncHandler(async (req, res) => {
+export const sendMessage = asyncHandler(async (req, res, next) => {
 	const { firstName, lastName, email, phone, message } = req.body;
+
 	// Create a new message
 	const newMessage = await Message.create({
 		firstName,

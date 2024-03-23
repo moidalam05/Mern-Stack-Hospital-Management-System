@@ -18,19 +18,20 @@ const userSchema = new mongoose.Schema(
 			trim: true,
 			maxLength: [50, 'Your last name cannot exceed 50 characters'],
 		},
-		username: {
-			type: String,
-			required: [true, 'Please enter your username'],
-			trim: true,
-			unique: true,
-			minLength: [3, 'Username must be at least 3 characters long'],
-		},
 		email: {
 			type: String,
 			required: [true, 'Please enter your email'],
 			unique: true,
 			trim: true,
 			validate: [validator.isEmail, 'Please enter a valid email'],
+		},
+		phone: {
+			type: String,
+			required: [true, 'Please enter your phone number'],
+			trim: true,
+			maxLength: [10, 'Phone number must be 10 characters long'],
+			minLength: [10, 'Phone number must be 10 characters long'],
+			
 		},
 		password: {
 			type: String,

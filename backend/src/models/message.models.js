@@ -32,6 +32,7 @@ const messageSchema = new mongoose.Schema(
 			required: [true, 'Please enter your message'],
 			trim: true,
 			minLength: [10, 'Message must be at least 10 characters long'],
+			maxLength: [500, 'Message must be at most 500 characters long'],
 		},
 	},
 	{ timestamps: true, versionKey: false }
