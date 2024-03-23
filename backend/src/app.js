@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import routes from './routes/index.js';
 import config from './config/index.js';
 import fileUpload from 'express-fileupload';
+import {errorHandler} from './middlewares/customError.js';
 
 const app = express();
 app.use(express.json());
@@ -32,4 +33,5 @@ app.all('*', (_req, res) => {
 	res.status(404).json({ success: false, message: '404 - Page Not Found' });
 });
 
+app.use(errorHandler);
 export default app;
