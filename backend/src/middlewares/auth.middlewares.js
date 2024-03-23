@@ -3,7 +3,7 @@ import asyncHanlder from '../utils/asyncHandler.js';
 import User from '../models/user.models.js';
 
 export const authError = asyncHanlder(async (req, res, next) => {
-	let { firstName, lastName, email, phone, password, dob, gender } = req.body;
+	const { firstName, lastName, email, phone, password, dob, gender } = req.body;
 
 	if (
 		!firstName ||
@@ -56,4 +56,5 @@ export const authError = asyncHanlder(async (req, res, next) => {
 	if (alreadyExists) {
 		return next(new CustomError('User already exists', 400));
 	}
+	next();
 });
