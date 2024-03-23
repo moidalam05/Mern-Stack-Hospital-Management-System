@@ -31,7 +31,6 @@ const userSchema = new mongoose.Schema(
 			trim: true,
 			maxLength: [10, 'Phone number must be 10 characters long'],
 			minLength: [10, 'Phone number must be 10 characters long'],
-			
 		},
 		password: {
 			type: String,
@@ -67,10 +66,10 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre('save', async function (next) {
-	if (!this.isModified('password')) {
-		next();
-	}
+	if (!this.isModified('password')) return next();
+	// Hash the password before saving the user model
 	this.password = await bcrypt.hash(this.password, 10);
+	next();
 });
 
 userSchema.methods = {

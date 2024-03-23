@@ -2,28 +2,15 @@ import asyncHandler from '../utils/asyncHandler.js';
 import CustomError from '../utils/customError.js';
 import User from '../models/user.models.js';
 
-export const register = asyncHandler(async (req, res,next) => {
-	const {
-		firstName,
-		lastName,
-		email,
-		phone,
-		password,
-		dob,
-		gender,
-    } = req.body;
-    
-    if (!firstName || !lastName || !email || !phone || !password || !dob || !gender) { 
-        return next(new CustomError('Please enter all fields', 400)) ;
-	}
-	
-	// Check if user exists
-	const alreadyExists = await User.findOne({ email });
-	if (alreadyExists) {
-		return next(new CustomError('User already exists', 400));
-	}
-	
-	// Create user in database 
+export const cookieOptions = {
+	expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+	httpOnly: true,
+};
+
+export const register = asyncHandler(async (req, res, next) => {
+	const { firstName, lastName, email, phone, password, dob, gender } = req.body;
+
+	// Create user in database
 	const user = await User.create({
 		firstName,
 		lastName,
@@ -34,7 +21,14 @@ export const register = asyncHandler(async (req, res,next) => {
 		gender,
 	});
 
-	if(!user){
+	// generate token
+	const token = user.generateToken();
+	user.password = undefined;
+
+	// store the token in the user's cookie
+	res.cookie('token', token, cookieOptions);
+
+	if (!user) {
 		return next(new CustomError('Invalid user data', 400));
 	}
 
@@ -42,5 +36,6 @@ export const register = asyncHandler(async (req, res,next) => {
 		success: true,
 		message: 'User registered successfully',
 		user,
+		token,
 	});
 });
