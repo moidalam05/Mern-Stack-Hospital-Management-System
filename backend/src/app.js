@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import routes from './routes/index.js';
 import config from './config/index.js';
 import fileUpload from 'express-fileupload';
-import { errorHandler } from './utils/customError.js';
+import { errorHandler } from './utils/CustomError.js';
 
 const app = express();
 

@@ -1,5 +1,5 @@
 import asyncHandler from '../utils/asyncHandler.js';
-import CustomError from '../utils/customError.js';
+import CustomError from '../utils/CustomError.js';
 import User from '../models/user.models.js';
 
 export const cookieOptions = {

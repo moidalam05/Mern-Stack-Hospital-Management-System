@@ -1,11 +1,6 @@
-import CustomError from '../utils/customError.js';
+import CustomError from '../utils/CustomError.js';
 import asyncHanlder from '../utils/asyncHandler.js';
 import User from '../models/user.models.js';
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 
 export const authError = asyncHanlder(async (req, res, next) => {
 	let { firstName, lastName, email, phone, password, dob, gender } = req.body;

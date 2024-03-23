@@ -1,4 +1,4 @@
-import CustomError from '../utils/customError.js';
+import CustomError from '../utils/CustomError.js';
 import asyncHanlder from '../utils/asyncHandler.js';
 
 export const messageError = asyncHanlder(async (req, res, next) => {
