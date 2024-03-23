@@ -9,14 +9,14 @@ export const isMessageValid = asyncHandler(async (req, res, next) => {
 		throw new CustomError('Please fill in all fields', 400);
 	}
 
-	if (!/^[a-zA-Z]+$/.test(firstName)) {
+	if (!/^[a-zA-Z\s]+$/.test(firstName)) {
 		throw new CustomError(
 			'First name must contain only alphabetic characters',
 			400
 		);
 	}
 
-	if (!/^[a-zA-Z]+$/.test(lastName)) {
+	if (!/^[a-zA-Z\s]+$/.test(lastName)) {
 		throw new CustomError(
 			'Last name must contain only alphabetic characters',
 			400
