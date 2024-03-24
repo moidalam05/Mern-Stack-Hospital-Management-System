@@ -16,7 +16,7 @@ export const createAppointment = asyncHandler(async (req, res) => {
 		phone,
 		dob,
 		gender,
-		appintmentDate,
+		appointmentDate,
 		department,
 		doctor_firstName,
 		doctor_lastName,
@@ -32,11 +32,10 @@ export const createAppointment = asyncHandler(async (req, res) => {
 		!phone ||
 		!dob ||
 		!gender ||
-		!appintmentDate ||
+		!appointmentDate ||
 		!department ||
 		!doctor_firstName ||
 		!doctor_lastName ||
-		!hasVisisted ||
 		!address
 	) {
 		throw new CustomError('Please fill in all fields', 400);
@@ -79,7 +78,7 @@ export const createAppointment = asyncHandler(async (req, res) => {
 		phone,
 		dob,
 		gender,
-		appintmentDate,
+		appointmentDate,
 		department,
 		doctor: {
 			firstName: doctor_firstName,
