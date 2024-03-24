@@ -96,3 +96,59 @@ export const createAppointment = asyncHandler(async (req, res) => {
 		appointment,
 	});
 });
+
+// @desc    Get all appointments
+// @route   GET /api/appointments
+// @access  Private
+
+export const getAppointments = asyncHandler(async (req, res) => {
+	const appointments = await Appointment.find();
+
+	res.status(200).json({
+		success: true,
+		appointments,
+	});
+});
+
+// @desc    update appointment status
+// @route   PUT /api/appointments/:id
+// @access  Private
+
+export const updateAppointmentStatus = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+	let appointment = await Appointment.findById(id);
+
+	if (!appointment) {
+		throw new CustomError('Appointment not found', 404);
+	}
+
+	appointment = await Appointment.findByIdAndUpdate(id, req.body, {
+		new: true,
+		runValidators: true,
+		useFindAndModify: false,
+	});
+
+	res.status(200).json({
+		success: true,
+		message: 'Appointment updated successfully',
+		appointment,
+	});
+});
+
+// @desc    delete appointment
+// @route   DELETE /api/appointments/:id
+// @access  Private
+
+export const deleteAppointment = asyncHandler(async (req, res) => {
+	const { id } = req.params;
+	const appointment = await Appointment.findByIdAndDelete(id);
+
+	if (!appointment) {
+		throw new CustomError('Appointment not found', 404);
+	}
+
+	res.status(200).json({
+		success: true,
+		message: 'Appointment deleted successfully',
+	});
+});
