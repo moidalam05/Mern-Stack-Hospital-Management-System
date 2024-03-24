@@ -52,13 +52,13 @@ export const register = asyncHandler(async (req, res) => {
 	}
 
 	// check if user already exists
-	const alreadyExists = await User.findOne({ email });
-	if (alreadyExists) {
+	const user = await User.findOne({ email });
+	if (user) {
 		throw new CustomError('User already exists', 400);
 	}
 
 	// create user
-	const user = await User.create({
+	await User.create({
 		firstName,
 		lastName,
 		email,
@@ -69,15 +69,57 @@ export const register = asyncHandler(async (req, res) => {
 		gender,
 	});
 
+	// send response
+	res.status(201).json({
+		success: true,
+		message: 'User registered successfully',
+	});
+});
+
+
+// @desc    Login user
+// @route   POST /api/v1/auth/login
+// @access  Public
+
+export const login = asyncHandler(async (req, res) => { 
+	const { email, password, role } = req.body;
+	
+	// check all fields are filled
+	if (!email || !password || !role) {
+		throw new CustomError('Please fill all fields', 400);
+	}
+
+	// validate provided data
+	if (!validator.isEmail(email)) {
+		throw new CustomError('Please enter a valid email', 400);
+	}
+
+	// check if password is correct
+	if(password.length < 8) {
+		throw new CustomError('Password should have at least 8 characters', 400);
+	}
+
+	// find user
+	const user = await User.findOne({ email }).select('+password');
+	if (!user) {
+		throw new CustomError('Invalid email or password', 404);
+	}
+
+	// password is correct
+	const isPasswordMatched = await user.comparePassword(password);
+	if (!isPasswordMatched) {
+		throw new CustomError('Password do not match!', 401);
+	}
+
 	// create token
 	const token = user.generateJwtToken();
 	// remove password from response
 	user.password = undefined;
 
 	// send response
-	res.status(201).json({
+	res.status(200).json({
 		success: true,
-		message: 'User registered successfully',
+		message: 'User logged in successfully',
 		user,
 		token,
 	});
