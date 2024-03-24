@@ -176,6 +176,30 @@ export const adminRegister = asyncHandler(async (req, res) => {
 	generateToken(admin, 'Admin registered successfully', 201, res);
 });
 
+// @desc    get all doctors
+// @route   GET /api/v1/auth/doctors
+// @access  Private
+
+export const getDoctors = asyncHandler(async (req, res) => { 
+	const doctors = await User.find({ role: 'Doctor' });
+	res.status(200).json({
+		success: true,
+		doctors,
+	});
+});
+
+// @desc    get user details
+// @route   GET /api/v1/auth/user
+// @access  Private
+
+export const getUserDetails = asyncHandler(async (req, res) => { 
+	const user = req.user;
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
+
 // @desc    Logout user
 // @route   GET /api/v1/auth/logout
 // @access  Private
