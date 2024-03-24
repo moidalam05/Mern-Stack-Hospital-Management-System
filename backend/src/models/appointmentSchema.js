@@ -66,7 +66,7 @@ const appointmentSchema = new mongoose.Schema(
 		},
 		hasVisited: {
 			type: Boolean,
-			required: [true, 'Visited status is required'],
+			default: false,
 		},
 		doctorId: {
 			type: mongoose.Schema.Types.ObjectId,
