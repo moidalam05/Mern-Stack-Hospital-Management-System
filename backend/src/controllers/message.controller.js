@@ -64,7 +64,7 @@ export const sendMessage = asyncHandler(async (req, res) => {
 	});
 });
 
-export const getMessages = asyncHandler(async (req, res) => { 
+export const getMessages = asyncHandler(async (req, res) => {
 	const messages = await Message.find();
 	res.status(200).json({
 		success: true,
@@ -72,7 +72,7 @@ export const getMessages = asyncHandler(async (req, res) => {
 	});
 });
 
-export const deleteMessage = asyncHandler(async (req, res) => { 
+export const deleteMessage = asyncHandler(async (req, res) => {
 	const message = await Message.findByIdAndDelete(req.params.id);
 	if (!message) {
 		throw new CustomError('Message not found', 404);

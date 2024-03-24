@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { deleteMessage, getMessages, sendMessage } from '../controllers/message.controller.js';
+import {
+	deleteMessage,
+	getMessages,
+	sendMessage,
+} from '../controllers/message.controller.js';
 import {
 	isAdminLoggedIn,
 	isPatientLoggedIn,
