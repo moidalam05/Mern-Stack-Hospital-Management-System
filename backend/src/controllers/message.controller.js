@@ -2,6 +2,10 @@ import asyncHandler from '../middlewares/asyncHandler.js';
 import CustomError from '../middlewares/customError.js';
 import Message from '../models/messageSchema.js';
 
+// @desc    Send a message
+// @route   POST /api/messages
+// @access  Public
+
 export const sendMessage = asyncHandler(async (req, res) => {
 	// Get the data from the request body
 	const { firstName, lastName, email, phone, message } = req.body;
@@ -64,6 +68,10 @@ export const sendMessage = asyncHandler(async (req, res) => {
 	});
 });
 
+// @desc    Get all messages
+// @route   GET /api/messages
+// @access  Public
+
 export const getMessages = asyncHandler(async (req, res) => {
 	const messages = await Message.find();
 	res.status(200).json({
@@ -71,6 +79,10 @@ export const getMessages = asyncHandler(async (req, res) => {
 		messages,
 	});
 });
+
+// @desc    delete a message
+// @route   DELETE /api/messages/:id
+// @access  Public
 
 export const deleteMessage = asyncHandler(async (req, res) => {
 	const message = await Message.findByIdAndDelete(req.params.id);
