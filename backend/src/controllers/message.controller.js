@@ -63,3 +63,11 @@ export const sendMessage = asyncHandler(async (req, res) => {
 		message: 'Message sent successfully',
 	});
 });
+
+export const getMessages = asyncHandler(async (req, res) => { 
+	const messages = await Message.find();
+	res.status(200).json({
+		success: true,
+		messages,
+	});
+});
