@@ -71,3 +71,14 @@ export const getMessages = asyncHandler(async (req, res) => {
 		messages,
 	});
 });
+
+export const deleteMessage = asyncHandler(async (req, res) => { 
+	const message = await Message.findByIdAndDelete(req.params.id);
+	if (!message) {
+		throw new CustomError('Message not found', 404);
+	}
+	res.status(200).json({
+		success: true,
+		message: 'Message deleted successfully',
+	});
+});

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getMessages, sendMessage } from '../controllers/message.controller.js';
+import { deleteMessage, getMessages, sendMessage } from '../controllers/message.controller.js';
 import {
 	isAdminLoggedIn,
 	isPatientLoggedIn,
@@ -9,5 +9,6 @@ const router = Router();
 
 router.post('/', sendMessage);
 router.get('/all', isAdminLoggedIn, getMessages);
+router.delete('/:id', isAdminLoggedIn, deleteMessage);
 
 export default router;
