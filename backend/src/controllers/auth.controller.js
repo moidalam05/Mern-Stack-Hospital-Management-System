@@ -200,17 +200,30 @@ export const getUserDetails = asyncHandler(async (req, res) => {
 	});
 });
 
-// @desc    Logout user
+// @desc    Logout admin
 // @route   GET /api/v1/auth/logout
 // @access  Private
 
-export const logout = asyncHandler(async (req, res) => {
-	res.cookie('token', null, {
-		expires: new Date(Date.now() + 10 * 1000),
+export const logoutAdmin = asyncHandler(async (req, res) => {
+	res.status(200).cookie('AdminToken', '', {
+		expires: new Date(Date.now()),
 		httpOnly: true,
-	});
-	res.status(200).json({
+	}).json({
 		success: true,
-		message: 'User logged out successfully',
+		message: 'Admin logged out successfully',
+	});
+});
+
+// @desc    Logout patient
+// @route   GET /api/v1/auth/logout
+// @access  Private
+
+export const logoutPatient = asyncHandler(async (req, res) => { 
+	res.status(200).cookie('PatientToken', '', {
+		expires: new Date(Date.now()),
+		httpOnly: true,
+	}).json({
+		success: true,
+		message: 'Patient logged out successfully',
 	});
 });
