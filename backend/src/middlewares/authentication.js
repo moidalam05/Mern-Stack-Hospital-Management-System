@@ -6,7 +6,6 @@ import User from '../models/userSchema.js';
 
 export const isAdminLoggedIn = asyncHandler(async (req, res, next) => {
 	const token = req.cookies.AdminToken;
-	console.log(token);
 	if (!token) {
 		throw new CustomError('Admin Not authorized to access this route', 401);
 	}
