@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../main';
 import { Link, useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 	const [show, setShow] = useState(false);

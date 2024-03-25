@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 const Home = () => {
 	return (
 		<>
-			<Navbar/>
+			<Navbar />
 			<Hero
 				title={
 					'Welcome to HealthLink Medical Institute | Your Trusted Heathcare provider'
@@ -21,7 +21,7 @@ const Home = () => {
 			<Biography imageUrl={aboutImage} />
 			<Departments />
 			<MessageForm />
-			<Footer/>
+			<Footer />
 		</>
 	);
 };

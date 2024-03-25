@@ -214,7 +214,7 @@ export const logoutAdmin = asyncHandler(async (req, res) => {
 		})
 		.json({
 			success: true,
-			message: 'Admin logged out successfully',
+			message: 'User logged out successfully',
 		});
 });
 
@@ -231,7 +231,7 @@ export const logoutPatient = asyncHandler(async (req, res) => {
 		})
 		.json({
 			success: true,
-			message: 'Patient logged out successfully',
+			message: 'User logged out successfully',
 		});
 });
 

@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import Hero from '../components/Hero';
+import AppointmentForm from '../components/AppointmentForm';
+import Navbar from '../components/Navbar';
+import signImage from '/signin.png';
 
 const Appointment = () => {
-  return (
-    <div>Appointment</div>
-  )
-}
+	return (
+		<>
+			<Navbar />
+			<Hero
+				title={'Schedule Your Appointment | ZeeCare Medical Institute'}
+				imageUrl={signImage}
+			/>
+			<AppointmentForm />
+		</>
+	);
+};
 
-export default Appointment
+export default Appointment;
