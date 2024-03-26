@@ -214,7 +214,7 @@ export const logoutAdmin = asyncHandler(async (req, res) => {
 		})
 		.json({
 			success: true,
-			message: 'User logged out successfully',
+			message: 'Admin logged out successfully',
 		});
 });
 
